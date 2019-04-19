@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.imooc.ad</groupId>
+    <artifactId>imooc-ad</artifactId>
+    <!--项目产生的构件类型，例如jar、war、ear、pom。插件可以创建他们自己的构件类型，所以前面列的不是全部构件类型-->
+    <packaging>pom</packaging>
+    <!--项目当前版本，格式为:主版本.次版本.增量版本-限定版本号-->
+    <version>1.0-SNAPSHOT</version>
+    <!--增加了子项目这个pom文件就会自动增加这个这个标签-->
+    <modules>
+        <module>ad-eureka</module>
+        <module>ad-gateway</module>
+        <module>imooc-ad-service</module>
+    </modules>
+    <!--项目的名称, Maven产生的文档用-->
+    <name>imooc-ad-spring-cloud</name>
+    <!-- 项目的详细描述, Maven 产生的文档用。  当这个元素能够用HTML格式描述时
+    （例如，CDATA中的文本会被解析器忽略，就可以包含HTML标签）,不鼓励使用纯文本描述。
+    如果你需要修改产生的web站点的索引页面，你应该修改你自己的索引页文件，而不是调整这里的文档。-->
+    <description>Project For imooc Ad SpringCloud</description>
+    <!--父项目的坐标。如果项目中没有规定某个元素的值，那么父项目中的对应值即为项目的默认值。
+     坐标包括group ID，artifact ID和 version。-->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.2.RELEASE</version>
+    </parent>
+    <!--管理一些通用属性-->
+    <properties>
+        <spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.18</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <!--只有在测试用例的时候才会用到-->
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+        <!--depencymanagerment 子工程会逐层的向上去寻找依赖的版本-->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <!--只会在引用项目的时候 才会引用到当前项目里面 这样其他子项目再去引用父工程的时候
+                把父工程当作parent的时候 他会自动使用到springcloud这样一个版本-->
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+     <!--定义远程仓库-->
+    <repositories>
+            <repository>
+                <id>spring-milestones</id>
+                <name>Spring Milestones</name>
+                <url>https://repo.spring.io/milestone</url>
+                <!--不会下载他的开发版 而会去下载他的正式版-->
+                <snapshots>
+                    <enabled>false</enabled>
+                </snapshots>
+            </repository>
+    </repositories>
+</project>
