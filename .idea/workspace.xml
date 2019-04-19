@@ -4,16 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/imooc-ad-service/ad-sponsor/src/main/java/com/imooc/ad/entity/AdPlan.java" line="31" mnemonic="2" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c6b0d0d8-a94c-40e4-b74f-71d2c27681c0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/imooc-ad-service/ad-sponsor/src/main/java/com/imooc/ad/entity/AdPlan.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/imooc-ad-service/ad-sponsor/src/main/java/com/imooc/ad/entity/AdUnit.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/imooc-ad-service/ad-sponsor/src/main/java/com/imooc/ad/entity/unit_condition/AdUnitKeyWords.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imooc-ad-service/ad-common/target/classes/com/imooc/ad/conf/WebConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/imooc-ad-service/ad-common/target/classes/com/imooc/ad/conf/WebConfiguration.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imooc-ad-service/ad-sponsor/src/main/java/com/imooc/ad/constant/CommonStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/imooc-ad-service/ad-sponsor/src/main/java/com/imooc/ad/constant/CommonStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imooc-ad-service/ad-sponsor/src/main/java/com/imooc/ad/entity/AdUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/imooc-ad-service/ad-sponsor/src/main/java/com/imooc/ad/entity/AdUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-cloud-ad.docx" beforeDir="false" afterPath="$PROJECT_DIR$/spring-cloud-ad.docx" afterDir="false" />
-    </list>
+    <list default="true" id="c6b0d0d8-a94c-40e4-b74f-71d2c27681c0" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/ad-eureka/target/" />
@@ -308,7 +299,7 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555664555073" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555664564702" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -374,7 +365,7 @@
       <option name="presentableId" value="Default" />
       <updated>1555469487760</updated>
       <workItem from="1555469494834" duration="32685000" />
-      <workItem from="1555638502560" duration="15722000" />
+      <workItem from="1555638502560" duration="16321000" />
     </task>
     <task id="LOCAL-00001" summary="IDEA整合github测试">
       <created>1555639597124</created>
@@ -387,11 +378,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48407000" />
+    <option name="totallyTimeSpent" value="49006000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21848138" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
