@@ -1,5 +1,6 @@
 package com.imooc.ad.entity;
 
+import com.imooc.ad.constant.CommonStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,7 +34,7 @@ public class AdUser {
     private String token;//这个用于接入其它系统 用户信息不公开展示给一个token比较合适
     @Basic
     @Column(name="user_status",nullable = false)
-    private Integer status;
+    private Integer userstatus;
     @Basic
     @Column(name="create_time",nullable = false)
     private Date createTime;
@@ -44,5 +45,8 @@ public class AdUser {
     public AdUser(String username, String token) {
         this.username = username;
         this.token = token;
+        this.userstatus = CommonStatus.VALID.getStatus();
+        this.createTime= new Date();
+        this.updateTime = this.createTime;
     }
 }
