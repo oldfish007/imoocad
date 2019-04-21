@@ -8,5 +8,5 @@ import java.util.List;
 public interface AdUnitRepository extends JpaRepository<AdUnit,Long> {
 
         AdUnit findByPlanIdAndUnitName(Long planId,String unitname);
-        List<AdUnit> findAllByUnitStatus(Integer status);
+        List<AdUnit> findAllByUnitStatus(Integer staus);
 }
