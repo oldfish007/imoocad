@@ -15,7 +15,6 @@ import com.imooc.ad.vo.AdPlanResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -35,7 +34,7 @@ public class AdPlanServiceImpl implements IAdPlanService {
     }
 
     @Override
-    public AdPlanResponse createAdPlan(AdPlanRequest request) throws Exception {
+    public AdPlanResponse createAdPlan(AdPlanRequest request) throws AdException {
         if(!request.createValidate()){
             throw new AdException(Constants.ErrorMsg.REQUEST_PARAM_ERROR);
         }
@@ -58,7 +57,7 @@ public class AdPlanServiceImpl implements IAdPlanService {
     }
 
     @Override
-    public List<AdPlan> getAdPlanByIds(AdPlanGetRequest request) throws Exception {
+    public List<AdPlan> getAdPlanByIds(AdPlanGetRequest request) throws AdException {
         if(!request.validate()){
             throw new AdException(Constants.ErrorMsg.REQUEST_PARAM_ERROR);
         }
@@ -67,7 +66,7 @@ public class AdPlanServiceImpl implements IAdPlanService {
     }
 
     @Override
-    public AdPlanResponse updateAdPlan(AdPlanRequest request) throws Exception {
+    public AdPlanResponse updateAdPlan(AdPlanRequest request) throws AdException {
         if(!request.updateValidate()){
             throw new AdException(Constants.ErrorMsg.REQUEST_PARAM_ERROR);
         }
@@ -92,7 +91,7 @@ public class AdPlanServiceImpl implements IAdPlanService {
     }
 
     @Override
-    public void deleteAdPlan(AdPlanRequest request) throws Exception {
+    public void deleteAdPlan(AdPlanRequest request) throws AdException {
 
         if(!request.deleteValidate()){
             new AdException(Constants.ErrorMsg.REQUEST_PARAM_ERROR);

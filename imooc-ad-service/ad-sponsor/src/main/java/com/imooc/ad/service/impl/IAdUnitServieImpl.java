@@ -19,7 +19,6 @@ import com.imooc.ad.service.IAdUnitServie;
 import com.imooc.ad.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -27,7 +26,8 @@ import java.util.stream.Collectors;
 public class IAdUnitServieImpl implements IAdUnitServie {
 
     private  final AdPlanRepository adPlanRepository;
-    private final AdUnitRepository adUnitRepository;
+    private  final AdUnitRepository adUnitRepository;
+
     @Autowired
     private AdUnitDistrictRepository adUnitDistrictRepository;
     @Autowired
@@ -38,16 +38,13 @@ public class IAdUnitServieImpl implements IAdUnitServie {
     private CreativeRepository creativeRepository;
     @Autowired
     private CreativeUnitRepository creativeUnitRepository;
-
-
     @Autowired
     public IAdUnitServieImpl(AdPlanRepository adPlanRepository, AdUnitRepository adUnitRepository) {
         this.adPlanRepository = adPlanRepository;
         this.adUnitRepository = adUnitRepository;
     }
-
     @Override
-    public AdUnitResponse createAdUnit(AdUnitRequest request) throws Exception {
+    public AdUnitResponse createAdUnit(AdUnitRequest request) throws AdException {
         if(!request.createValidate()){
             throw new AdException(Constants.ErrorMsg.REQUEST_PARAM_ERROR);
         }
@@ -68,7 +65,7 @@ public class IAdUnitServieImpl implements IAdUnitServie {
     }
 
     @Override
-    public AdUnitItResponse createUnitIt(AdUnitItRequest request) throws Exception {
+    public AdUnitItResponse createUnitIt(AdUnitItRequest request) throws AdException {
         List<Long> unitIds = request.getUnitIts().stream().map(
                 AdUnitItRequest.UnitIt::getUnitId
         ).collect(Collectors.toList());
@@ -92,7 +89,7 @@ public class IAdUnitServieImpl implements IAdUnitServie {
     }
 
     @Override
-    public AdUnitKeywordResponse createUnitKeyWord(AdUnitKeywordRequest request) throws Exception {
+    public AdUnitKeywordResponse createUnitKeyWord(AdUnitKeywordRequest request) throws AdException {
         //首先收集传上来的request集合
         List<Long> unitIds = request.getUnitKeyWords().stream()
                 .map(AdUnitKeywordRequest.UnitKeyWord::getUnitId)
@@ -120,7 +117,7 @@ public class IAdUnitServieImpl implements IAdUnitServie {
     }
 
     @Override
-    public AdUnitDistrictResponse createUnitDistrict(AdUnitDistrictResquest request) throws Exception {
+    public AdUnitDistrictResponse createUnitDistrict(AdUnitDistrictResquest request) throws AdException {
         List<Long> unitIds = request.getUnitDistirctList().stream()
                 .map(AdUnitDistrictResquest.UnitDistirct::getUnitId)
                 .collect(Collectors.toList());
@@ -140,13 +137,12 @@ public class IAdUnitServieImpl implements IAdUnitServie {
                     .map(
                             AdUnitDistrict::getId
                     ).collect(Collectors.toList());
-
         }
         return new AdUnitDistrictResponse(ids);
     }
 
     @Override
-    public CreativeUnitResponse createCreativeUnit(CreativeUnitRequest request) throws Exception {
+    public CreativeUnitResponse createCreativeUnit(CreativeUnitRequest request) throws AdException {
         //收集
         List<Long> unitIds = request.getUnitItems().stream().map(
                 CreativeUnitRequest.CreativeUnitItem::getUnitId

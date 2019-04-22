@@ -1,8 +1,8 @@
 server:
   port: 7000
   servlet:
-    context-path:
-      name: eureka-client-ad-sponsor
+    context-path: /ad-sponsor
+
 spring:
   application:
     # 这个名字可以自定义

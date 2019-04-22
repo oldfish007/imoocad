@@ -7,3 +7,15 @@ eureka:
   client:
     service-url:
       defaultZone: http://server1:8000/eureka/
+zuul:
+  prefix: /imooc
+  routes:
+    sponsor:
+      #去掉前缀之后 还有一个前缀的概念/imooc
+      #针对这个统一的前缀 针对你的微服务进行统一的转发
+      path: /ad-sponsor/**
+      #微服务的名字
+      serviceId: eureka-client-ad-sponsor
+      #如果把这个参数设置为true那么他去匹配到/ad-sponsor/ 他就把这个/ad-sponsor/去掉了
+      #如果设置为false 他就不会把这个/ad-sponsor 如果设置为true去掉了就会报404
+      strip-prefix: false
