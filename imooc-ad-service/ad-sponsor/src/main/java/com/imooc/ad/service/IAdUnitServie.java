@@ -1,14 +1,15 @@
 package com.imooc.ad.service;
 
+import com.imooc.ad.exception.AdException;
 import com.imooc.ad.vo.*;
 
 public interface IAdUnitServie {
 
-    AdUnitResponse createAdUnit(AdUnitRequest request)throws  Exception;
+    AdUnitResponse createAdUnit(AdUnitRequest request)throws AdException;
 
-    AdUnitItResponse createUnitIt(AdUnitItRequest request) throws  Exception;
-    AdUnitKeywordResponse createUnitKeyWord(AdUnitKeywordRequest request) throws Exception;
-    AdUnitDistrictResponse createUnitDistrict(AdUnitDistrictResquest resquest) throws Exception;
+    AdUnitItResponse createUnitIt(AdUnitItRequest request) throws  AdException;
+    AdUnitKeywordResponse createUnitKeyWord(AdUnitKeywordRequest request) throws AdException;
+    AdUnitDistrictResponse createUnitDistrict(AdUnitDistrictResquest resquest) throws AdException;
 
-    CreativeUnitResponse createCreativeUnit(CreativeUnitRequest request) throws Exception;
+    CreativeUnitResponse createCreativeUnit(CreativeUnitRequest request) throws AdException;
 }

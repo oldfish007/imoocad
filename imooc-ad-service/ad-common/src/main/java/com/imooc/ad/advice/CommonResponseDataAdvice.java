@@ -24,7 +24,7 @@ public class CommonResponseDataAdvice implements ResponseBodyAdvice<Object> {
      * @return
      */
     @Override
-    @SuppressWarnings("all")
+    @SuppressWarnings("all") //去除警告
     public boolean supports(MethodParameter methodParameter,
                             Class<? extends HttpMessageConverter<?>> aClass) {
        //拿得到类的声明被这个注解标识IgnoreResponseAdvice.class 我们就不想
