@@ -25,7 +25,7 @@ public class SearchApplication {
         SpringApplication.run(SearchApplication.class,args);
     }
     @Bean
-    @LoadBalanced
+    @LoadBalanced //实现负载均衡
     RestTemplate restTemplate(){
         return new RestTemplate();
     }
