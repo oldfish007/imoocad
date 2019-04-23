@@ -34,7 +34,7 @@ public class AdPlanOPController {
         return iAdPlanService.createAdPlan(request);
     }
 
-    @PostMapping("/create/adPlan")
+    @PostMapping("/get/adPlan")
     public List<AdPlan> getAdPlanByIds(AdPlanGetRequest request) throws AdException{
 
         log.info("ad-sponsor:getAdPlanByIds->{}",JSON.toJSONString(request));
