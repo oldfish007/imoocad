@@ -23,10 +23,10 @@ import java.util.concurrent.ConcurrentSkipListSet;
 @Slf4j
 @Component
 public class UnitKeywordIndex implements IndexWare<String, Set<Long>> {//保存unitId的set集合
-//关键词  推广单元ID集合
+    //关键词  推广单元ID集合
     private static Map<String,Set<Long>> keywordUnitMap;
-//推广单元ID  关键词集合
-    private static Map<Long,Set<String>>  unitKeywordMap; //正序索引 一个unitid 也可以对应多个关键字限制
+    //推广单元ID  关键词集合
+    private static Map<Long,Set<String>>  unitKeywordMap; //正序索引 一个unitId 也可以对应多个关键字限制
     static{
         keywordUnitMap = new ConcurrentHashMap<>();
         unitKeywordMap = new ConcurrentHashMap<>();
