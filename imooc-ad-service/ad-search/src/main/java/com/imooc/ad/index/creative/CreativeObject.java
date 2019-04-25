@@ -20,7 +20,7 @@ public class CreativeObject {
     private Integer height;
     private Integer width;
     private Integer auditStatus;
-    private Integer adUrl;//物料地址
+    private String adUrl;//物料地址
 
     public void update(CreativeObject newObject){
         if(null!=newObject.getAdId()){

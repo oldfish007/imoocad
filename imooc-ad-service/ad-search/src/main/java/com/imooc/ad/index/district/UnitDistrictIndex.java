@@ -19,14 +19,15 @@ import java.util.concurrent.ConcurrentSkipListSet;
 @Slf4j
 @Component
 public class UnitDistrictIndex implements IndexWare<String , Set<Long>> {
-
+//province-city String     unitId Set<Long>
     private static Map<String,Set<Long>> districtUnitMap;
+// unitId Long   province-city Set<String>
     private static Map<Long,Set<String>> unitDistrictMap;
     static{
         districtUnitMap = new ConcurrentHashMap<>();
         unitDistrictMap = new ConcurrentHashMap<>();
     }
-    //province-city
+
     @Override
     public Set<Long> get(String key) {
         return districtUnitMap.get(key);

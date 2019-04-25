@@ -15,5 +15,4 @@ public class DConstant {
     public static final String AD_UNIT_IT="ad_unit_it.data";
     public static final String AD_UNIT_DISTRICT="ad_unit_district.data";
     public static final String AD_UNIT_KEYWORD="ad_unit_keyword.data";
-
 }
