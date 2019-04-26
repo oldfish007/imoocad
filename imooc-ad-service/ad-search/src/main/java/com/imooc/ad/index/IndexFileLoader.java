@@ -42,8 +42,8 @@ public class IndexFileLoader {
     //IndexFileLoader加载spring容器之后呢 init()方法就应该执行
     @PostConstruct
     public void init(){
-//加载顺序是不呢个改变的 2 3 4
-        //从数据文件里面加载数据 推广计划实现了全量数据的加载
+//加载顺序是不能改变的 2 3 4
+//从数据文件里面加载数据 推广计划实现了全量数据的加载
         List<String> adPlanString = LoadDumpData(String.format("%s%s", DConstant.DATA_ROOT_DIR,
                                                                 DConstant.AD_PLAN));
         adPlanString.forEach(p-> AdLevelDataHandler.handleLevel2(
@@ -109,5 +109,4 @@ public class IndexFileLoader {
             throw new RuntimeException(ex.getMessage());
         }
     }
-
 }
