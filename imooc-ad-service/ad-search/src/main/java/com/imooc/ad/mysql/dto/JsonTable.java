@@ -30,6 +30,9 @@ public class JsonTable {
     private List<Column> update;
     private List<Column> delete;
 
+    /**
+     * 这个集合用户存储针对每一个操作
+     */
     @Data
     @NoArgsConstructor
     @AllArgsConstructor

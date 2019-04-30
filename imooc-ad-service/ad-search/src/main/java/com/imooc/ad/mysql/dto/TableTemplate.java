@@ -36,5 +36,4 @@ public class TableTemplate {
      * 字段索引 -> 字段名  includedColumns={0, 1, 2}
      */
     private Map<Integer,String> posMap = new HashMap<>();
-
 }

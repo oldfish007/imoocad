@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * @author
- * @description模板对象
+ * @description模板对象  模板文件映射到template对象
  * @date 2019/4/28
  */
 @Data
