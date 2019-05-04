@@ -1,6 +1,6 @@
 {
   "database": "imooc_ad_data",
-  "tableList": [
+  "tableList":
     {
       "tableName": "ad_plan",
       "level": 2,
