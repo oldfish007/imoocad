@@ -1,18 +1,17 @@
 package com.imooc.ad.mysql.listener;
 
 import com.github.shyiko.mysql.binlog.BinaryLogClient;
-import com.github.shyiko.mysql.binlog.event.Event;
-import com.github.shyiko.mysql.binlog.event.EventData;
-import com.github.shyiko.mysql.binlog.event.EventType;
-import com.github.shyiko.mysql.binlog.event.TableMapEventData;
+import com.github.shyiko.mysql.binlog.event.*;
 import com.imooc.ad.mysql.TemplateHolder;
 import com.imooc.ad.mysql.dto.BinlogRowData;
+import com.imooc.ad.mysql.dto.TableTemplate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.Serializable;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * 总结：
@@ -46,7 +45,7 @@ public class  AggregationListener  implements BinaryLogClient.EventListener {
 
         return dbName+":"+tableName;
     }
-
+//定义一个注册方法让外界可以去调用  注册监听器的方法
     public void register(String _dbName,String _tableName,
                          Ilistener ilistener){
         log.error("register:{}-{}",_dbName,_tableName);
@@ -56,12 +55,11 @@ public class  AggregationListener  implements BinaryLogClient.EventListener {
 //我们的目标是要把event解析成binlogRowData
 // 把这个binlogrowdata传递给listener实现增量数据的更新
 //event里面包含了 head data
-
     @Override
     public void onEvent(Event event) {
 
         EventType type  = event.getHeader().getEventType();
-        log.error("event type:{}",type);
+        log.debug("event type:{}",type);
         if(type==EventType.TABLE_MAP){
             TableMapEventData  data = event.getData();//data里面包含了所有的操作数据
             this.tableName = data.getTable();
@@ -101,12 +99,55 @@ public class  AggregationListener  implements BinaryLogClient.EventListener {
         }
     }
 
-    /**我们最终的目的是要将event 里面的data转变为binlogRowData
-     *实现event data转变为binlogRowData
+    private List<Serializable[]> getAfterValues(EventData eventData){
+        if(eventData instanceof WriteRowsEventData){
+          return ((WriteRowsEventData)eventData).getRows();
+        }
+        if(eventData instanceof  UpdateRowsEventData){
+            return ((UpdateRowsEventData)eventData).getRows().stream()
+                    .map(Map.Entry::getValue)
+                    .collect(Collectors.toList());
+        }
+        if(eventData instanceof DeleteRowsEventData){
+            return ((DeleteRowsEventData)eventData).getRows();
+        }
+        //如果没有就返回一个空的
+        return Collections.emptyList();
+    }
+    /** 们最终的目的是要将event 里面的data转变为binlogRowData
+     * 实现event data转变为binlogRowData
      */
     private BinlogRowData binlogRowData(EventData eventData){
+        TableTemplate table = templateHolder.getTable(tableName);
+        if(null == table){
+            log.warn("table {} not found",tableName);
+            return null;
+        }
+//在每一次遍历的过程总实现填充 我们只关心变化后的数据
+        List<Map<String,String>> afterMapList = new ArrayList<>();
+        for (Serializable[] after : getAfterValues(eventData)) {
+            Map<String,String> afterMap = new HashMap<>();
+            int colLen = after.length;
+            for (int ix=0;ix<colLen;ix++){
+                // 取出当前位置对应的列名
+                String colName = table.getPosMap().get(ix);
+                // 如果没有则说明不关心这个列
+                if(null == colName){
+                    log.debug("ignore position:{}",ix);
+                    continue;
+                }
+                String colValue = after[ix].toString();
+                afterMap.put(colName,colValue);
+            }
+//更新的每一行的数据都实现了填充
+            afterMapList.add(afterMap);
+        }
+        //创建binlogRowData对象
+        BinlogRowData rowData = new BinlogRowData();
+        rowData.setAfter(afterMapList);
+        rowData.setTable(table);
 
-        return null;
+        return rowData;
     }
 
 

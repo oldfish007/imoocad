@@ -42,6 +42,10 @@ public class TemplateHolder {
         loadJson("template.json");//加载json文件
     }
 
+    public TableTemplate getTable(String tableName){
+        return parsetTemplate.getTableTemplateMap().get(tableName);
+    }
+
     private void loadJson(String path){
         //类加载器
         ClassLoader cl = Thread.currentThread().getContextClassLoader();
